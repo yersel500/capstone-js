@@ -1,1 +1,1 @@
-// Import here all vendors-libraries etc.
+import "bootstrap";
