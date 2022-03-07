@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js --open",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "test": "jest --verbose",
+    "watch": "jest --watchAll"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,9 @@
     "file-loader": "^6.2.0",
     "hint": "^6.1.9",
     "html-loader": "^3.1.0",
+    "jest": "^27.5.1",
+    "node-sass": "^7.0.1",
+    "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
@@ -37,6 +42,7 @@
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
+    "bootstrap": "^5.1.3",
     "clean-webpack-plugin": "^4.0.0",
     "css-minimizer-webpack-plugin": "^3.4.1",
     "html-webpack-plugin": "^5.5.0",
