@@ -1,3 +1,2 @@
 import './main.scss';
-
-// importar app.js
+import './app/app.js';
