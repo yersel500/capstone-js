@@ -8,7 +8,10 @@ export default async function loadPokemons() {
       const { url } = element;
       fetch(url)
         .then((response1) => response1.json())
-        .then((data1) => showPokemons(data1));
+        .then((data1) => {
+          showPokemons(data1);
+          console.log(data1);
+        });
     });
   } catch (error) {
     console.log(error);
