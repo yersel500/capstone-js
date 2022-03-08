@@ -1,9 +1,8 @@
 import './main.scss';
-const button = document.querySelector('.button');
+import heart from './assets/heart.svg';
 const container = document.querySelector('.container');
 const container2 = document.querySelector('.container2');
 
-button.addEventListener('click', loadPokemons);
 
 window.onload = () => {
   loadPokemons();
@@ -31,8 +30,12 @@ function showPokemons(info) {
     <div class="card h-100">
       <img src=${info.sprites.front_default} class="card-img-top" alt=${info.name}>
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <div class= "d-flex justify-content-between">
+        <h5 class="card-title d-inline">${info.name}</h5>
+        <img src="${heart}" class="img-fluid d-inline w-25" alt="like">
+        </div>
+        <p>This is a description of the pokemon</p>
+        <button type="button" class="btn btn-primary d-block mx-auto mb-2">Comments</button>
       </div>
     </div>
   </div>
