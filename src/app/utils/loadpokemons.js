@@ -11,5 +11,4 @@ export default async function loadPokemons() {
       .then((response1) => response1.json())
       .then((data1) => showPokemons(data1));
   });
-
 }
