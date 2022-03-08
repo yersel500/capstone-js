@@ -9,8 +9,11 @@ export default function showPokemons(info) {
       <img src=${info.sprites.front_default} class="card-img-top" alt=${info.name}>
       <div class="card-body">
         <div class= "d-flex justify-content-between">
-        <h5 class="card-title d-inline">${info.name}</h5>
-        <img src="${heart}" class="img-fluid d-inline w-25" alt="like">
+          <h5 class="card-title d-inline">${info.name}</h5>
+          <div class="d-flex flex-column">
+            <img src="${heart}" class="img-fluid d-inline w-25 ms-auto" alt="like">
+            <p class="ms-auto">5 likes</p>
+          </div>
         </div>
         <p>This is a description of the pokemon</p>
         <button type="button" class="btn btn-primary d-block mx-auto mb-2">Comments</button>
