@@ -2,7 +2,13 @@ import heart from '../../assets/heart.svg';
 
 const container = document.querySelector('.container');
 
-export default function showPokemons(info) {
+export default function showPokemons(info, like) {
+  let numLikes = 0;
+  like.forEach((element) => {
+    if (element.item_id === `heart-${info.id}`) {
+      numLikes = element.likes;
+    }
+  });
   container.innerHTML += `
   <div class="col card-container card-${info.id}">
     <div class="card h-100">
@@ -12,7 +18,7 @@ export default function showPokemons(info) {
           <h5 class="card-title d-inline">${info.name}</h5>
           <div class="d-flex flex-column">
             <img src="${heart}" class="img-fluid d-inline w-25 ms-auto heart-${info.id}" alt="like">
-            <p class="ms-auto">5 likes</p>
+            <p class="ms-auto heart-${info.id}-likes">${numLikes} likes</p>
           </div>
         </div>
         <p>This is a description of the pokemon</p>
@@ -29,6 +35,4 @@ export default function showPokemons(info) {
   //   console.log(`You clicked on the card`);
   // });
   // console.log('hola peru');
-
 }
-
