@@ -8,9 +8,21 @@ export default async function loadPokemons() {
       const { url } = element;
       fetch(url)
         .then((response1) => response1.json())
-        .then((data1) => showPokemons(data1));
+        .then((data1) => { 
+        showPokemons(data1)
+        // const cardContainer = document.querySelector(`.heart-2`);
+        // cardContainer.addEventListener('click', () => {
+        // console.log(`You clicked on the card 2`);
+        // }
+        // );
+        });
     });
-  } catch (error) {
+    // const cardContainer = document.querySelectorAll('.img-fluid');
+    // console.log(cardContainer);
+    // console.log('hola')
+  ;
+  } 
+  catch (error) {
     console.log(error);
   }
 }
