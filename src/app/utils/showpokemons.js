@@ -1,14 +1,23 @@
 import heart from '../../assets/heart.svg';
 import getComments from './getComments.js';
 import postComments from './postComments.js';
+import postLikes from './postLikes.js';
 
 const container = document.querySelector('.container');
 
-export default function showPokemons(info) {
+export default function showPokemons(info, like) {
   let pokeType = '';
   info.types.forEach((element) => {
     pokeType += `${element.type.name} `;
   });
+
+  let numLikes = 0;
+  like.forEach((element) => {
+    if (element.item_id === `heart-${info.id}`) {
+      numLikes = element.likes;
+    }
+  });
+
   container.innerHTML += `
   <div class="col card-container card-${info.name}">
     <div class="card h-100">
@@ -18,7 +27,7 @@ export default function showPokemons(info) {
           <h5 class="card-title d-inline">${info.name}</h5>
           <div class="d-flex flex-column">
             <img src="${heart}" class="img-fluid d-inline w-25 ms-auto heart-${info.id} img-heart" alt="like">
-            <p class="ms-auto heart-${info.id}-likes">5 likes</p>
+            <p class="ms-auto heart-${info.id}-likes">${numLikes} likes</p>
           </div>
         </div>
           <p>This is a description of the pokemon</p>
@@ -86,4 +95,14 @@ export default function showPokemons(info) {
       })();
     });
   });
+
+  const heartTest = Array.from(document.getElementsByClassName('img-heart'));
+  console.log(heartTest);
+
+  heartTest.forEach( element => {
+    element.addEventListener('click', (e) => {
+      console.log(e.target.classList[4]);
+      postLikes(e.target.classList[4]);
+    })
+  })
 }
