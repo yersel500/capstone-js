@@ -71,13 +71,18 @@ export default function showPokemons(info, like) {
         if (commentCounter !== 0) {
           const commentsSection = document.querySelector(`.displayCommentsSection-${itemID}`);
           commentsSection.innerHTML = `
-          <h5>Comments (${commentCounter})</h5> 
+          <h5>Comments (<span class="commentsCounter" id="${itemID}">${commentCounter}</span>)</h5> 
         `;
           commmentsData.forEach((el) => {
             commentsSection.innerHTML += `
           <p>${el.creation_date} ${el.username} : ${el.comment}</p>
         `;
           });
+        } else if (commentCounter === 0) {
+          const commentsSection = document.querySelector(`.displayCommentsSection-${itemID}`);
+          commentsSection.innerHTML = `
+          <h5>Comments (<span class="commentsCounter" id="${itemID}">0</span>)</h5> 
+        `;
         }
         const commentBtns = Array.from(document.getElementsByClassName('comment-btn'));
         commentBtns.forEach((commentBtn) => {
@@ -91,6 +96,8 @@ export default function showPokemons(info, like) {
               const newComment = document.createElement('p');
               newComment.innerHTML = newCommentInfo;
               commentsSection2.appendChild(newComment);
+              const commentsCounter = document.querySelector(`.commentsCounter#${targetId}`);
+              commentsCounter.innerHTML = Number(commentsCounter.innerHTML) + 1;
               postComments(targetId, nameValue.value, commentValue.value);
               nameValue.value = '';
               commentValue.value = '';
