@@ -1,16 +1,16 @@
+import counterItems from './counterItems.js';
 import showPokemons from './showpokemons.js';
 
 export default async function loadPokemons() {
   const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=36');
-  const data = await response.json();
+  const pokemons = await response.json();
   const response1 = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/FBTV7LVQNoUbR7Qxl6jA/likes');
-  const data1 = await response1.json();
-  data.results.forEach((element) => {
+  const likes = await response1.json();
+  pokemons.results.forEach((element) => {
     const { url } = element;
     fetch(url)
-      .then((response2) => response2.json())
-      .then((data2) => showPokemons(data2, data1));
+      .then((pokemonInfo) => pokemonInfo.json())
+      .then((pokemonData) => showPokemons(pokemonData, likes));
   });
-
-  return data;
+  counterItems(pokemons.results);
 }
