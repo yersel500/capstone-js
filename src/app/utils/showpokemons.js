@@ -98,13 +98,13 @@ export default function showPokemons(info, like) {
 
   const heartTest = Array.from(document.getElementsByClassName('img-heart'));
 
-  heartTest.forEach( element => {
+  heartTest.forEach((element) => {
     element.addEventListener('click', (e) => {
       const textLikes = document.querySelector(`.${e.target.classList[4]}-likes`);
       const myContent = textLikes.textContent;
-      let matches = myContent.match(/(\d+)/);
-      textLikes.innerHTML = `${Number(matches[0])+1} likes`
+      const matches = myContent.match(/(\d+)/);
+      textLikes.innerHTML = `${Number(matches[0]) + 1} likes`;
       postLikes(e.target.classList[4]);
-    })
-  })
+    });
+  });
 }
