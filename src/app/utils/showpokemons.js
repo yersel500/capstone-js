@@ -26,8 +26,8 @@ export default function showPokemons(info, like) {
         <div class= "d-flex justify-content-between">
           <h5 class="card-title d-inline">${info.name}</h5>
           <div class="d-flex flex-column">
-            <img src="${heart}" class="img-fluid d-inline w-25 ms-auto heart-${info.id} img-heart" alt="like">
-            <p class="ms-auto heart-${info.id}-likes">${numLikes} likes</p>
+            <img src="${heart}" class="img-fluid d-inline ms-auto heart-${info.id} img-heart" alt="like">
+            <p class="ms-auto heart-${info.id}-likes">${numLikes}</p>
           </div>
         </div>
           <p>This is a description of the pokemon</p>
@@ -86,6 +86,11 @@ export default function showPokemons(info, like) {
             const nameValue = document.querySelector(`input.${targetId}`);
             const commentValue = document.querySelector(`textarea.${targetId}`);
             if (nameValue.value !== '' && commentValue.value !== '') {
+              const commentsSection2 = document.querySelector(`.displayCommentsSection-${targetId}`);
+              const newCommentInfo = `${nameValue.value} : ${commentValue.value}`;
+              const newComment = document.createElement('p');
+              newComment.innerHTML = newCommentInfo;
+              commentsSection2.appendChild(newComment);
               postComments(targetId, nameValue.value, commentValue.value);
               nameValue.value = '';
               commentValue.value = '';

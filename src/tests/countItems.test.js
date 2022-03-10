@@ -1,4 +1,4 @@
-import countItems from './countItems';
+import countItems from './countItems.js';
 
 describe('Testing counter of pokemons', () => {
   test('Test an array with 3 items', () => {
