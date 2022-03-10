@@ -1,25 +1,37 @@
 import heart from '../../assets/heart.svg';
 import getComments from './getComments.js';
 import postComments from './postComments.js';
+import postLikes from './postLikes.js';
 
 const container = document.querySelector('.container');
 
-export default function showPokemons(info) {
+export default function showPokemons(info, like) {
   let pokeType = '';
   info.types.forEach((element) => {
     pokeType += `${element.type.name} `;
   });
+
+  let numLikes = 0;
+  like.forEach((element) => {
+    if (element.item_id === `heart-${info.id}`) {
+      numLikes = element.likes;
+    }
+  });
+
   container.innerHTML += `
-  <div class="col">
+  <div class="col card-container card-${info.name}">
     <div class="card h-100">
-      <img src=${info.sprites.front_default} class="card-img-top" alt=${info.name}>
+      <img src=${info.sprites.other['official-artwork'].front_default} class="card-img-top" alt=${info.name}>
       <div class="card-body">
         <div class= "d-flex justify-content-between">
-        <h5 class="card-title d-inline">${info.name}</h5>
-        <img src="${heart}" class="img-fluid d-inline w-25" alt="like">
+          <h5 class="card-title d-inline">${info.name}</h5>
+          <div class="d-flex flex-column">
+            <img src="${heart}" class="img-fluid d-inline w-25 ms-auto heart-${info.id} img-heart" alt="like">
+            <p class="ms-auto heart-${info.id}-likes">${numLikes} likes</p>
+          </div>
         </div>
-        <p>This is a description of the pokemon</p>
-        <button type="button" class="btn btn-primary d-block mx-auto mb-2 openComments" data-bs-toggle="modal" data-bs-target="#pokeModal-${info.id}" id="item${info.id}" >Comments</button>
+          <p>This is a description of the pokemon</p>
+          <button type="button" class="btn btn-primary d-block mx-auto mb-2 openComments" data-bs-toggle="modal" data-bs-target="#pokeModal-${info.id}" id="item${info.id}" >Comments</button>
       </div>
     </div>
   </div>
@@ -29,7 +41,7 @@ export default function showPokemons(info) {
     <div class="modal-content">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       <div class="modal-body text-center">
-      <img clas="img-fluid" src=${info.sprites.front_default} alt=${info.name}>
+      <img clas="img-fluid" src=${info.sprites.other['official-artwork'].front_default} alt=${info.name}>
       <h3 class="modal-title" id="exampleModalLabel">${info.name}</h3>
         <div>
           <p>Type: <br>${pokeType}</p>
@@ -81,6 +93,18 @@ export default function showPokemons(info) {
           });
         });
       })();
+    });
+  });
+
+  const heartTest = Array.from(document.getElementsByClassName('img-heart'));
+
+  heartTest.forEach((element) => {
+    element.addEventListener('click', (e) => {
+      const textLikes = document.querySelector(`.${e.target.classList[4]}-likes`);
+      const myContent = textLikes.textContent;
+      const matches = myContent.match(/(\d+)/);
+      textLikes.innerHTML = `${Number(matches[0]) + 1} likes`;
+      postLikes(e.target.classList[4]);
     });
   });
 }
