@@ -1,8 +1,11 @@
-export default function counterItems(array) {
-  const counter = array.length;
+import countItems from './countItems';
+import loadPokemons from './loadpokemons';
+
+export default async function counterItems() {
+  await loadPokemons();
+  const newheartTest = Array.from(document.getElementsByClassName('openComments'));
+  const myItems = countItems(newheartTest);
   const counterPok = document.querySelector('.counterItems');
-  const counterNav = document.querySelector('.counterPokemons');
-  counterPok.innerHTML = `Choose between our ${counter} pokemons`;
-  counterNav.innerHTML = `(${counter})`;
-  return counter;
+  counterPok.innerHTML = `Choose between our ${myItems} pokemons`;
+  return newheartTest.length;
 }
