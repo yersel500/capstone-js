@@ -1,4 +1,5 @@
 import heart from '../../assets/heart.svg';
+import postData from './postData.js';
 
 const container = document.querySelector('.container');
 
@@ -17,7 +18,7 @@ export default function showPokemons(info, like) {
         <div class= "d-flex justify-content-between">
           <h5 class="card-title d-inline">${info.name}</h5>
           <div class="d-flex flex-column">
-            <img src="${heart}" class="img-fluid d-inline w-25 ms-auto heart-${info.id}" alt="like">
+            <img src="${heart}" class="img-fluid d-inline w-25 ms-auto heart-${info.id} img-heart" alt="like">
             <p class="ms-auto heart-${info.id}-likes">${numLikes} likes</p>
           </div>
         </div>
@@ -28,11 +29,15 @@ export default function showPokemons(info, like) {
   </div>
   `;
 
-  // console.log(container.innerHTML);
+  const heartTest = Array.from(document.getElementsByClassName('img-heart'));
+  console.log(heartTest);
 
-  // const cardContainer = document.querySelector(`.heart-${info.id}`);
-  // cardContainer.addEventListener('click', () => {
-  //   console.log(`You clicked on the card`);
-  // });
-  // console.log('hola peru');
+  heartTest.forEach( element => {
+    element.addEventListener('click', (e) => {
+      console.log(e.target.classList[4]);
+      postData('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/FBTV7LVQNoUbR7Qxl6jA/likes', { item_id: e.target.classList[4]})
+    })
+  })
+
+
 }
