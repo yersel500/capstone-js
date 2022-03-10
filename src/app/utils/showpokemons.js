@@ -105,11 +105,11 @@ export default function showPokemons(info, like) {
 
   heartTest.forEach((element) => {
     element.addEventListener('click', (e) => {
-      const textLikes = document.querySelector(`.${e.target.classList[4]}-likes`);
+      const textLikes = document.querySelector(`.${e.target.classList[3]}-likes`);
       const myContent = textLikes.textContent;
       const matches = myContent.match(/(\d+)/);
-      textLikes.innerHTML = `${Number(matches[0]) + 1} likes`;
-      postLikes(e.target.classList[4]);
+      textLikes.innerHTML = `${Number(matches[0]) + 1}`;
+      postLikes(e.target.classList[3]);
     });
   });
 }
