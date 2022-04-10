@@ -41,7 +41,7 @@ export default function showPokemons(info, like) {
     <div class="modal-content">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       <div class="modal-body text-center">
-      <img clas="img-fluid" src=${info.sprites.other['official-artwork'].front_default} alt=${info.name}>
+      <img class="img-fluid" src=${info.sprites.other['official-artwork'].front_default} alt=${info.name}>
       <h3 class="modal-title" id="exampleModalLabel">${info.name}</h3>
         <div>
           <p>Type: <br>${pokeType}</p>
